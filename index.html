@@ -164,7 +164,7 @@ const SEASONS = [
 ];
 /* YouTube links: put the full URL (watch, youtu.be or shorts) or just the video id, in the order of the episodes. */
 const YT = {
-  1:['','','','','','','','']
+  1:['nWNslUhLkOQ','SEPqy5vXMzk','CeCCgA9XBT4','','','','','']
 };
 const VM = {
   1:['1247308649','1247587229','1247589903','','','','','']
@@ -178,7 +178,7 @@ const UI = {
 const ALL = []; SEASONS.forEach((s,si)=>s.eps.forEach((e,ei)=>{ALL.push({s:si,e:ei,ep:e,season:s});}));
 const $ = id => document.getElementById(id);
 let lang = 'en', cur = 0, open = -1;
-function vmUrl(si,ei){ const v=(VM[SEASONS[si].n]||[])[ei]; return v ? 'https://player.vimeo.com/video/'+v+'?dnt=1&title=0&byline=0&portrait=0&badge=0&autopause=0' : ''; }
+function vmUrl(si,ei){ const y=(YT[SEASONS[si].n]||[])[ei]; if(y && !/^https?:/.test(y)) return 'https://www.youtube-nocookie.com/embed/'+y+'?rel=0&playsinline=1&modestbranding=1'; const v=(VM[SEASONS[si].n]||[])[ei]; return v ? 'https://player.vimeo.com/video/'+v+'?dnt=1&title=0&byline=0&portrait=0&badge=0&autopause=0' : ''; }
 function ytUrl(v){ if(!v) return ''; return /^https?:/.test(v) ? v : 'https://www.youtube.com/watch?v='+v; }
 function link(si,ei){ return ytUrl((YT[SEASONS[si].n]||[])[ei]); }
 function pad(n){ return String(n).padStart(2,'0'); }
